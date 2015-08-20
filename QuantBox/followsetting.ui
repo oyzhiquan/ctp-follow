@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FollowSettingClass</class>
+ <widget class="QDialog" name="FollowSettingClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>780</width>
+    <height>340</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>跟踪账号设置</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <widget class="QPushButton" name="closeButton">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>300</y>
+     <width>100</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>关闭窗口</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="followView">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>760</width>
+     <height>190</height>
+    </rect>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
+   <property name="selectionBehavior">
+    <enum>QAbstractItemView::SelectRows</enum>
+   </property>
+   <attribute name="horizontalHeaderHighlightSections">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="verticalHeaderVisible">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="verticalHeaderDefaultSectionSize">
+    <number>21</number>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>账号</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>期货公司</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>期货席位</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>交易服务器</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>跟单方向</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>跟单比例</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>密码</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>220</y>
+     <width>30</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>账 号</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>220</y>
+     <width>30</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>密 码</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>260</y>
+     <width>50</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>期货公司</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>260</y>
+     <width>50</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>期货席位</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>260</y>
+     <width>60</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>交易服务器</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>220</y>
+     <width>50</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>跟单方向</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>220</y>
+     <width>50</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>跟单比例</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="followInverstID">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>220</y>
+     <width>110</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="followPassword">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>220</y>
+     <width>110</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="followDirect">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>220</y>
+     <width>110</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>正向跟单</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>反向跟单</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLineEdit" name="followRatio">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>220</y>
+     <width>110</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="followBrokerName">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>260</y>
+     <width>110</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="editable">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="followBrokerID">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>260</y>
+     <width>110</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="editable">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="followTdFrontAddr">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>260</y>
+     <width>310</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="editable">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="insertButton">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>300</y>
+     <width>100</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>增加账号</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="deleteButton">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>300</y>
+     <width>100</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>删除账号</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="updateButton">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>300</y>
+     <width>100</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>更新账号</string>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>followInverstID</tabstop>
+  <tabstop>followPassword</tabstop>
+  <tabstop>followDirect</tabstop>
+  <tabstop>followRatio</tabstop>
+  <tabstop>followBrokerName</tabstop>
+  <tabstop>followBrokerID</tabstop>
+  <tabstop>followTdFrontAddr</tabstop>
+  <tabstop>insertButton</tabstop>
+  <tabstop>deleteButton</tabstop>
+  <tabstop>updateButton</tabstop>
+  <tabstop>closeButton</tabstop>
+  <tabstop>followView</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>closeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FollowSettingClass</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>620</x>
+     <y>300</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>125</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>followView</sender>
+   <signal>cellClicked(int,int)</signal>
+   <receiver>FollowSettingClass</receiver>
+   <slot>followCellClicked(int,int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>86</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>18</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>insertButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FollowSettingClass</receiver>
+   <slot>insertBtnClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>102</x>
+     <y>309</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>46</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FollowSettingClass</receiver>
+   <slot>deleteBtnClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>284</x>
+     <y>317</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>223</x>
+     <y>313</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>updateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FollowSettingClass</receiver>
+   <slot>updateBtnClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>456</x>
+     <y>316</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>397</x>
+     <y>311</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>followCellClicked(int,int)</slot>
+  <slot>insertBtnClicked()</slot>
+  <slot>deleteBtnClicked()</slot>
+  <slot>updateBtnClicked()</slot>
+ </slots>
+</ui>
