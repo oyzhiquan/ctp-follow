@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>395</width>
+    <width>370</width>
     <height>220</height>
    </rect>
   </property>
@@ -26,12 +26,12 @@
     <string>账 号</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="inverstID">
    <property name="geometry">
     <rect>
      <x>60</x>
      <y>20</y>
-     <width>113</width>
+     <width>110</width>
      <height>20</height>
     </rect>
    </property>
@@ -39,7 +39,7 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>200</x>
      <y>20</y>
      <width>30</width>
      <height>20</height>
@@ -49,40 +49,43 @@
     <string>密 码</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="password">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>240</x>
      <y>20</y>
-     <width>113</width>
+     <width>110</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>60</y>
-     <width>60</width>
+     <y>100</y>
+     <width>65</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>期货公司ID</string>
+    <string>经纪商编号</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>100</y>
-     <width>72</width>
+     <y>60</y>
+     <width>65</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>期货公司名称</string>
+    <string>服务器名称</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
@@ -90,57 +93,31 @@
     <rect>
      <x>20</x>
      <y>140</y>
-     <width>91</width>
+     <width>65</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>交易服务器地址</string>
+    <string>服务器地址</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="brokerName">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>85</x>
      <y>60</y>
-     <width>151</width>
-     <height>22</height>
+     <width>180</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="editable">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_2">
+  <widget class="QPushButton" name="saveButton">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>100</y>
-     <width>151</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="editable">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox_3">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>140</y>
-     <width>261</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="editable">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="okButton">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
+     <x>160</x>
      <y>180</y>
      <width>81</width>
      <height>23</height>
@@ -153,7 +130,7 @@
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>270</x>
      <y>180</y>
      <width>81</width>
      <height>23</height>
@@ -163,22 +140,48 @@
     <string>取  消</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="brokerID">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>85</x>
+     <y>100</y>
+     <width>180</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="frontAddr">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>85</x>
+     <y>140</y>
+     <width>265</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
   <connection>
-   <sender>okButton</sender>
+   <sender>saveButton</sender>
    <signal>clicked()</signal>
    <receiver>MainSettingClass</receiver>
-   <slot>accept()</slot>
+   <slot>saveBtnClicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>278</x>
-     <y>253</y>
+     <x>240</x>
+     <y>202</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
-     <y>254</y>
+     <y>209</y>
     </hint>
    </hints>
   </connection>
@@ -189,14 +192,34 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>369</x>
-     <y>253</y>
+     <x>349</x>
+     <y>202</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
-     <y>282</y>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>brokerName</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainSettingClass</receiver>
+   <slot>BrokerNameselected(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>135</x>
+     <y>67</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>305</x>
+     <y>72</y>
     </hint>
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>saveBtnClicked()</slot>
+  <slot>BrokerNameselected(QString)</slot>
+ </slots>
 </ui>

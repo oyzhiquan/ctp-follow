@@ -1,6 +1,8 @@
 ﻿#include "mainwindow.h"
 #include "include\mainsetting.h"
 #include "include\followsetting.h"
+#include "include\brokermanage.h"
+#include "include\strategysetting.h"
 #include <QCheckBox>
 #include <iostream>
 using namespace std;
@@ -13,7 +15,9 @@ MainWindow::MainWindow(QWidget *parent)
 	ui.setupUi(this);
     // 设置菜单事件
 	QObject::connect(ui.mainSetting, &QAction::triggered, this, &MainWindow::mainSettingClicked);
-	QObject::connect(ui.followSetting, &QAction::triggered, this, &MainWindow::followSettingClicked);
+    QObject::connect(ui.followSetting, &QAction::triggered, this, &MainWindow::followSettingClicked);
+    QObject::connect(ui.brokerManage, &QAction::triggered, this, &MainWindow::brokerManageClicked);
+    QObject::connect(ui.strategySetting, &QAction::triggered, this, &MainWindow::strategySetttingClicked);
 
 	setupFollowTable();
 	setupEventTable();
@@ -29,8 +33,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-	if(m_eventModel != NULL)
-		delete m_eventModel;
 }
 
 void MainWindow::setupFollowTable()
@@ -50,7 +52,7 @@ void MainWindow::setupFollowTable()
 void MainWindow::setupEventTable()
 {
 	QTableView * table = ui.eventTable;
-	m_eventModel = new QStandardItemModel();
+	m_eventModel = new QStandardItemModel(this);
     m_eventModel->setHorizontalHeaderItem(0, new QStandardItem(QString::fromLocal8Bit("发生时间")));
     m_eventModel->setHorizontalHeaderItem(1, new QStandardItem(QString::fromLocal8Bit("事件内容")));
 	table->setModel(m_eventModel);
@@ -63,18 +65,19 @@ void MainWindow::loadMainAccount()
 	if(db.open())
     {
 		QSqlQuery query;
-		query.exec("select inverst_id, password, broker_id, broker_name, td_front_addr from account where id = 1");
+        query.exec("select inverst_id, password, b.broker_id, b.broker_name, b.td_front_addr \
+                   from account a left join broker b on a.broker_name = b.broker_name where a.id = 1");
 		if(query.next())
 		{
-			strcpy(m_mainAccount.inverst_id, query.value(0).toByteArray().data());
+			strcpy(m_mainAccount.inverstorID, query.value(0).toByteArray().data());
 			strcpy(m_mainAccount.password, query.value(1).toByteArray().data());
-			strcpy(m_mainAccount.broker_id, query.value(2).toByteArray().data());
-			strcpy(m_mainAccount.broker_name, query.value(3).toByteArray().data());
-			strcpy(m_mainAccount.td_front_addr, query.value(4).toByteArray().data());
+			strcpy(m_mainAccount.brokerID, query.value(2).toByteArray().data());
+			strcpy(m_mainAccount.brokerName, query.value(3).toByteArray().data());
+			strcpy(m_mainAccount.tdFrontAddr, query.value(4).toByteArray().data());
 		}
 		db.close();
-		ui.mainUsername->setText(QString(m_mainAccount.inverst_id));
-		ui.mainBrokerName->setText(QString::fromLocal8Bit(m_mainAccount.broker_name));
+		ui.mainUsername->setText(QString(m_mainAccount.inverstorID));
+		ui.mainBrokerName->setText(QString(m_mainAccount.brokerName));
     }
 	else
 	{
@@ -88,15 +91,16 @@ void MainWindow::loadFollowAccount()
 	if(db.open())
     {
 		QSqlQuery query;
-		query.exec("select inverst_id, password, broker_id, broker_name, td_front_addr, direct, ratio from follow order by id");
+        query.exec("select inverst_id, password, b.broker_id, b.broker_name, b.td_front_addr, direct, ratio \
+                   from follow a left join broker b on a.broker_name = b.broker_name order by a.id");
 		Account temp;
 		while(query.next())
 		{
-			strcpy(temp.inverst_id, query.value(0).toByteArray().data());
+			strcpy(temp.inverstorID, query.value(0).toByteArray().data());
 			strcpy(temp.password, query.value(1).toByteArray().data());
-			strcpy(temp.broker_id, query.value(2).toByteArray().data());
-			strcpy(temp.broker_name, query.value(3).toByteArray().data());
-			strcpy(temp.td_front_addr, query.value(4).toByteArray().data());
+			strcpy(temp.brokerID, query.value(2).toByteArray().data());
+			strcpy(temp.brokerName, query.value(3).toByteArray().data());
+			strcpy(temp.tdFrontAddr, query.value(4).toByteArray().data());
 			temp.direct = query.value(5).toInt();
 			temp.ratio = query.value(6).toFloat();
 			m_followAccount.push_back(temp);
@@ -112,8 +116,8 @@ void MainWindow::loadFollowAccount()
 	for(int i=0; i < m_followAccount.size(); i++)
 	{
 		table->setItem(i, 0, new QTableWidgetItem(QString::number(i+1)));
-		table->setItem(i, 1, new QTableWidgetItem(QString(m_followAccount[i].inverst_id)));
-		table->setItem(i, 2, new QTableWidgetItem(QString(m_followAccount[i].broker_name)));
+		table->setItem(i, 1, new QTableWidgetItem(QString(m_followAccount[i].inverstorID)));
+		table->setItem(i, 2, new QTableWidgetItem(QString(m_followAccount[i].brokerName)));
 		if(m_followAccount[i].direct == 0)
 			table->setItem(i, 3, new QTableWidgetItem(QString::fromLocal8Bit("正向跟单")));
 		else
@@ -128,48 +132,52 @@ void MainWindow::loadFollowAccount()
 
 void MainWindow::mainTraderLogin()
 {
-	m_pMainTrader = new CTrader(-1, m_mainAccount);
-	QThread * thread = new QThread();
+	m_pMainTrader = new MainTrader(m_mainAccount);
+	QThread * pMainThread = new QThread();
+    FollowStrategy strategy;
+    for (int i=0; i < m_followAccount.size(); i++)
+    {
+        strategy.direct = m_followAccount[i].direct;
+        strategy.ratio = m_followAccount[i].ratio;
+        m_pMainTrader->AddFollowStrategy(m_followAccount[i].inverstorID, strategy);
+    }
 	// 线程结束时自动删除指针
-    QObject::connect(thread, &QThread::finished, m_pMainTrader, &CTrader::deleteLater);
-    QObject::connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    QObject::connect(pMainThread, &QThread::finished, m_pMainTrader, &MainTrader::deleteLater);
+    QObject::connect(pMainThread, &QThread::finished, pMainThread, &QThread::deleteLater);
 	// 线程启动时自动发送登录信号
-    QObject::connect(thread, &QThread::started, m_pMainTrader, &CTrader::ReqConnect);
+    QObject::connect(pMainThread, &QThread::started, m_pMainTrader, &MainTrader::ReqConnect);
     // 主账号登录后，样本账号开始登录
-    QObject::connect(m_pMainTrader, &CTrader::traderLogined, this, &MainWindow::followTraderLogin);
-    QObject::connect(this, &MainWindow::traderLogout, m_pMainTrader, &CTrader::ReqLogout);
+    QObject::connect(m_pMainTrader, &MainTrader::TraderLogined, this, &MainWindow::FollowTraderLogin);
+    // 发出退出登录信号主账号退出
+    QObject::connect(this, &MainWindow::TraderLogout, m_pMainTrader, &MainTrader::ReqDisconnect);
     // 界面更新信号
-	QObject::connect(m_pMainTrader, &CTrader::traderStatusUpdated, this, &MainWindow::updateStatus);
-    QObject::connect(m_pMainTrader, &CTrader::traderBalanceUpdated, this, &MainWindow::updateBalance);
-    QObject::connect(m_pMainTrader, &CTrader::eventTableUpdated, this, &MainWindow::insertEventTable);
+	QObject::connect(m_pMainTrader, &MainTrader::TraderStatusUpdated, this, &MainWindow::UpdateMainStatus);
+    QObject::connect(m_pMainTrader, &MainTrader::TraderBalanceUpdated, this, &MainWindow::UpdateMainBalance);
+    QObject::connect(m_pMainTrader, &MainTrader::EventTableUpdated, this, &MainWindow::InsertEventTable);
 	
-	m_pMainTrader->SetThread(thread);
-	thread->start();
-	updateStatus(-1, QString::fromLocal8Bit("启动线程"));
+	m_pMainTrader->SetThread(pMainThread);
+	pMainThread->start();
+	UpdateMainStatus(QString::fromLocal8Bit("启动线程"));
 }
 
-void MainWindow::followTraderLogin()
+void MainWindow::FollowTraderLogin()
 {
 	for(int index=0; index<m_followAccount.size(); index++)
 	{
-		CTrader* pFollowTrader = new CTrader(index, m_followAccount[index]);
-		QThread* thread = new QThread();
-		// 线程结束时自动删除指针
-        QObject::connect(thread, &QThread::finished, pFollowTrader, &CTrader::deleteLater);
-        QObject::connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-		// 线程启动时自动发送登录信号
-        QObject::connect(thread, &QThread::started, pFollowTrader, &CTrader::ReqConnect);
+		FollowTraderSpi* pFollowTrader = new FollowTraderSpi();
+        pFollowTrader->Init(index, m_followAccount[index].tdFrontAddr, m_followAccount[index].brokerID,
+            m_followAccount[index].inverstorID, m_followAccount[index].password);
+		// 发出退出登录信号自动删除指针
+        QObject::connect(this, &MainWindow::TraderLogout, pFollowTrader, &FollowTraderSpi::deleteLater);
         // 跟踪账号登录后，开始关联交易
-        QObject::connect(pFollowTrader, &CTrader::traderLogined, this, &MainWindow::connectFollow2Main);
-        QObject::connect(this, &MainWindow::traderLogout, pFollowTrader, &CTrader::ReqLogout);
+        QObject::connect(pFollowTrader, &FollowTraderSpi::TraderLogined, this, &MainWindow::connectFollow2Main);
         // 界面更新信号
-		QObject::connect(pFollowTrader, &CTrader::traderStatusUpdated, this, &MainWindow::updateStatus);
-        QObject::connect(pFollowTrader, &CTrader::traderBalanceUpdated, this, &MainWindow::updateBalance);
-        QObject::connect(pFollowTrader, &CTrader::eventTableUpdated, this, &MainWindow::insertEventTable);
+		QObject::connect(pFollowTrader, &FollowTraderSpi::TraderStatusUpdated, this, &MainWindow::UpdateFollowStatus);
+        QObject::connect(pFollowTrader, &FollowTraderSpi::TraderBalanceUpdated, this, &MainWindow::UpdateFollowBalance);
+        QObject::connect(pFollowTrader, &FollowTraderSpi::EventTableUpdated, this, &MainWindow::InsertEventTable);
 
-		pFollowTrader->SetThread(thread);
-		thread->start();
-		updateStatus(index, QString::fromLocal8Bit("启动线程"));
+		pFollowTrader->ReqConnect();
+		UpdateFollowStatus(index, QString::fromLocal8Bit("启动线程"));
 		m_pFollowTrader.push_back(pFollowTrader);
 	}
 }
@@ -184,7 +192,7 @@ void MainWindow::beginFollowBtnClicked()
 
 void MainWindow::stopFollowBtnClicked()
 {
-    emit traderLogout();
+    emit TraderLogout();
     m_pFollowTrader.clear();
     ui.beginFollowBtn->setEnabled(true);
     ui.stopFollowBtn->setEnabled(false);
@@ -192,41 +200,37 @@ void MainWindow::stopFollowBtnClicked()
 
 void MainWindow::connectFollow2Main(int index)
 {
-    CTrader* followTrader = m_pFollowTrader[index];
-    QObject::connect(followTrader, &CTrader::RtnTradeEvent, m_pMainTrader, &CTrader::FollowRtnTrade);
-    insertEventTable(QString::fromLocal8Bit("主账号%1开始监听样本账号%2")
-        .arg(m_mainAccount.inverst_id, m_followAccount[index].inverst_id));
+    FollowTraderSpi* followTrader = m_pFollowTrader[index];
+    QObject::connect(followTrader, &FollowTraderSpi::RtnTradeEvent, m_pMainTrader, &MainTrader::FollowRtnTrade);
+    InsertEventTable(QString::fromLocal8Bit("主账号%1开始监听样本账号%2")
+        .arg(m_mainAccount.inverstorID, m_followAccount[index].inverstorID));
 }
 
-void MainWindow::updateStatus(int index, QString message)
+void MainWindow::UpdateMainStatus(QString message)
 {
-	if(index == -1)
-    {
-		ui.mainStatus->setText(message);
-	}
-    else
-    {
-        ui.followView->setItem(index, 5, new QTableWidgetItem(message));
-	}
-}
+    ui.mainStatus->setText(message);
+}   
 
-void MainWindow::updateBalance(int index, double balance, double positionProfit, double closeProfit)
+void MainWindow::UpdateFollowStatus(int index, QString message)
 {
-	if(index == -1)
-	{
-		ui.mainBalance->setText(QString::number(balance, 'f', 2));
-		ui.mainPositionProfit->setText(QString::number(positionProfit, 'f', 2));
-		ui.mainCloseProfit->setText(QString::number(closeProfit, 'f', 2));
-	}
-	else
-	{
-		ui.followView->setItem(index, 6, new QTableWidgetItem(QString::number(balance, 'f', 2)));
-		ui.followView->setItem(index, 7, new QTableWidgetItem(QString::number(positionProfit, 'f', 2)));
-		ui.followView->setItem(index, 8, new QTableWidgetItem(QString::number(closeProfit, 'f', 2)));
-	}
+    ui.followView->setItem(index, 5, new QTableWidgetItem(message));
 }
 
-void MainWindow::insertEventTable(QString message)
+void MainWindow::UpdateMainBalance(double balance, double positionProfit, double closeProfit)
+{
+    ui.mainBalance->setText(QString::number(balance, 'f', 2));
+    ui.mainPositionProfit->setText(QString::number(positionProfit, 'f', 2));
+    ui.mainCloseProfit->setText(QString::number(closeProfit, 'f', 2));
+}
+
+void MainWindow::UpdateFollowBalance(int index, double balance, double positionProfit, double closeProfit)
+{
+    ui.followView->setItem(index, 6, new QTableWidgetItem(QString::number(balance, 'f', 2)));
+	ui.followView->setItem(index, 7, new QTableWidgetItem(QString::number(positionProfit, 'f', 2)));
+    ui.followView->setItem(index, 8, new QTableWidgetItem(QString::number(closeProfit, 'f', 2)));
+}
+
+void MainWindow::InsertEventTable(QString message)
 {
 	int row = m_eventModel->rowCount();
     QString current_time = QDateTime::currentDateTime().toString("hh:mm:ss:zzz");
@@ -247,4 +251,16 @@ void MainWindow::followSettingClicked()
     FollowSetting followSetting(this);
     QObject::connect(&followSetting, &FollowSetting::destroyed, this, &MainWindow::loadFollowAccount); 
     followSetting.exec();
+}
+
+void MainWindow::brokerManageClicked()
+{
+    BrokerManage brokerManage(this);
+    brokerManage.exec();
+}
+
+void MainWindow::strategySetttingClicked()
+{
+    StrategySetting strategySetting(this);
+    strategySetting.exec();
 }

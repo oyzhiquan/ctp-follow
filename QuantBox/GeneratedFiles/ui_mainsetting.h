@@ -26,66 +26,68 @@ class Ui_MainSettingClass
 {
 public:
     QLabel *label;
-    QLineEdit *lineEdit;
+    QLineEdit *inverstID;
     QLabel *label_2;
-    QLineEdit *lineEdit_2;
+    QLineEdit *password;
     QLabel *label_3;
     QLabel *label_4;
     QLabel *label_5;
-    QComboBox *comboBox;
-    QComboBox *comboBox_2;
-    QComboBox *comboBox_3;
-    QPushButton *okButton;
+    QComboBox *brokerName;
+    QPushButton *saveButton;
     QPushButton *cancelButton;
+    QLineEdit *brokerID;
+    QLineEdit *frontAddr;
 
     void setupUi(QDialog *MainSettingClass)
     {
         if (MainSettingClass->objectName().isEmpty())
             MainSettingClass->setObjectName(QStringLiteral("MainSettingClass"));
-        MainSettingClass->resize(395, 220);
+        MainSettingClass->resize(370, 220);
         label = new QLabel(MainSettingClass);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 20, 30, 20));
-        lineEdit = new QLineEdit(MainSettingClass);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(60, 20, 113, 20));
+        inverstID = new QLineEdit(MainSettingClass);
+        inverstID->setObjectName(QStringLiteral("inverstID"));
+        inverstID->setGeometry(QRect(60, 20, 110, 20));
         label_2 = new QLabel(MainSettingClass);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(220, 20, 30, 20));
-        lineEdit_2 = new QLineEdit(MainSettingClass);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(260, 20, 113, 20));
+        label_2->setGeometry(QRect(200, 20, 30, 20));
+        password = new QLineEdit(MainSettingClass);
+        password->setObjectName(QStringLiteral("password"));
+        password->setGeometry(QRect(240, 20, 110, 20));
+        password->setEchoMode(QLineEdit::Password);
         label_3 = new QLabel(MainSettingClass);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(20, 60, 60, 20));
+        label_3->setGeometry(QRect(20, 100, 65, 20));
         label_4 = new QLabel(MainSettingClass);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(20, 100, 72, 20));
+        label_4->setGeometry(QRect(20, 60, 65, 20));
         label_5 = new QLabel(MainSettingClass);
         label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(20, 140, 91, 20));
-        comboBox = new QComboBox(MainSettingClass);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(110, 60, 151, 22));
-        comboBox->setEditable(true);
-        comboBox_2 = new QComboBox(MainSettingClass);
-        comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
-        comboBox_2->setGeometry(QRect(110, 100, 151, 22));
-        comboBox_2->setEditable(true);
-        comboBox_3 = new QComboBox(MainSettingClass);
-        comboBox_3->setObjectName(QStringLiteral("comboBox_3"));
-        comboBox_3->setGeometry(QRect(110, 140, 261, 22));
-        comboBox_3->setEditable(true);
-        okButton = new QPushButton(MainSettingClass);
-        okButton->setObjectName(QStringLiteral("okButton"));
-        okButton->setGeometry(QRect(180, 180, 81, 23));
+        label_5->setGeometry(QRect(20, 140, 65, 20));
+        brokerName = new QComboBox(MainSettingClass);
+        brokerName->setObjectName(QStringLiteral("brokerName"));
+        brokerName->setGeometry(QRect(85, 60, 180, 20));
+        brokerName->setEditable(false);
+        saveButton = new QPushButton(MainSettingClass);
+        saveButton->setObjectName(QStringLiteral("saveButton"));
+        saveButton->setGeometry(QRect(160, 180, 81, 23));
         cancelButton = new QPushButton(MainSettingClass);
         cancelButton->setObjectName(QStringLiteral("cancelButton"));
-        cancelButton->setGeometry(QRect(290, 180, 81, 23));
+        cancelButton->setGeometry(QRect(270, 180, 81, 23));
+        brokerID = new QLineEdit(MainSettingClass);
+        brokerID->setObjectName(QStringLiteral("brokerID"));
+        brokerID->setEnabled(false);
+        brokerID->setGeometry(QRect(85, 100, 180, 20));
+        frontAddr = new QLineEdit(MainSettingClass);
+        frontAddr->setObjectName(QStringLiteral("frontAddr"));
+        frontAddr->setEnabled(false);
+        frontAddr->setGeometry(QRect(85, 140, 265, 20));
 
         retranslateUi(MainSettingClass);
-        QObject::connect(okButton, SIGNAL(clicked()), MainSettingClass, SLOT(accept()));
+        QObject::connect(saveButton, SIGNAL(clicked()), MainSettingClass, SLOT(saveBtnClicked()));
         QObject::connect(cancelButton, SIGNAL(clicked()), MainSettingClass, SLOT(reject()));
+        QObject::connect(brokerName, SIGNAL(currentTextChanged(QString)), MainSettingClass, SLOT(BrokerNameselected(QString)));
 
         QMetaObject::connectSlotsByName(MainSettingClass);
     } // setupUi
@@ -95,10 +97,10 @@ public:
         MainSettingClass->setWindowTitle(QApplication::translate("MainSettingClass", "\344\270\273\350\264\246\345\217\267\350\256\276\347\275\256", 0));
         label->setText(QApplication::translate("MainSettingClass", "\350\264\246 \345\217\267", 0));
         label_2->setText(QApplication::translate("MainSettingClass", "\345\257\206 \347\240\201", 0));
-        label_3->setText(QApplication::translate("MainSettingClass", "\346\234\237\350\264\247\345\205\254\345\217\270ID", 0));
-        label_4->setText(QApplication::translate("MainSettingClass", "\346\234\237\350\264\247\345\205\254\345\217\270\345\220\215\347\247\260", 0));
-        label_5->setText(QApplication::translate("MainSettingClass", "\344\272\244\346\230\223\346\234\215\345\212\241\345\231\250\345\234\260\345\235\200", 0));
-        okButton->setText(QApplication::translate("MainSettingClass", "\344\277\235  \345\255\230", 0));
+        label_3->setText(QApplication::translate("MainSettingClass", "\347\273\217\347\272\252\345\225\206\347\274\226\345\217\267", 0));
+        label_4->setText(QApplication::translate("MainSettingClass", "\346\234\215\345\212\241\345\231\250\345\220\215\347\247\260", 0));
+        label_5->setText(QApplication::translate("MainSettingClass", "\346\234\215\345\212\241\345\231\250\345\234\260\345\235\200", 0));
+        saveButton->setText(QApplication::translate("MainSettingClass", "\344\277\235  \345\255\230", 0));
         cancelButton->setText(QApplication::translate("MainSettingClass", "\345\217\226  \346\266\210", 0));
     } // retranslateUi
 

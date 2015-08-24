@@ -32,8 +32,8 @@ class Ui_MainWindowClass
 public:
     QAction *mainSetting;
     QAction *followSetting;
-    QAction *ruleSetting;
-    QAction *programRegister;
+    QAction *strategySetting;
+    QAction *brokerManage;
     QWidget *centralWidget;
     QGroupBox *MainBox;
     QLabel *label_5;
@@ -68,10 +68,10 @@ public:
         mainSetting->setObjectName(QStringLiteral("mainSetting"));
         followSetting = new QAction(MainWindowClass);
         followSetting->setObjectName(QStringLiteral("followSetting"));
-        ruleSetting = new QAction(MainWindowClass);
-        ruleSetting->setObjectName(QStringLiteral("ruleSetting"));
-        programRegister = new QAction(MainWindowClass);
-        programRegister->setObjectName(QStringLiteral("programRegister"));
+        strategySetting = new QAction(MainWindowClass);
+        strategySetting->setObjectName(QStringLiteral("strategySetting"));
+        brokerManage = new QAction(MainWindowClass);
+        brokerManage->setObjectName(QStringLiteral("brokerManage"));
         centralWidget = new QWidget(MainWindowClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         MainBox = new QGroupBox(centralWidget);
@@ -196,8 +196,8 @@ public:
         menuBar->addAction(menu_3->menuAction());
         menu->addAction(mainSetting);
         menu->addAction(followSetting);
-        menu_2->addAction(ruleSetting);
-        menu_3->addAction(programRegister);
+        menu_2->addAction(strategySetting);
+        menu_3->addAction(brokerManage);
 
         retranslateUi(MainWindowClass);
         QObject::connect(beginFollowBtn, SIGNAL(clicked()), MainWindowClass, SLOT(beginFollowBtnClicked()));
@@ -211,8 +211,8 @@ public:
         MainWindowClass->setWindowTitle(QApplication::translate("MainWindowClass", "\346\234\237\350\264\247\350\267\237\345\215\225\350\275\257\344\273\266", 0));
         mainSetting->setText(QApplication::translate("MainWindowClass", "\344\270\273\345\270\220\345\217\267\350\256\276\347\275\256", 0));
         followSetting->setText(QApplication::translate("MainWindowClass", "\346\240\267\346\234\254\350\264\246\345\217\267\350\256\276\347\275\256", 0));
-        ruleSetting->setText(QApplication::translate("MainWindowClass", "\350\267\237\345\215\225\347\255\226\347\225\245\350\256\276\347\275\256", 0));
-        programRegister->setText(QApplication::translate("MainWindowClass", "\347\250\213\345\272\217\346\263\250\345\206\214", 0));
+        strategySetting->setText(QApplication::translate("MainWindowClass", "\350\267\237\345\215\225\347\255\226\347\225\245\350\256\276\347\275\256", 0));
+        brokerManage->setText(QApplication::translate("MainWindowClass", "\346\234\215\345\212\241\345\231\250\347\256\241\347\220\206", 0));
         MainBox->setTitle(QApplication::translate("MainWindowClass", "\344\270\273\350\264\246\345\217\267", 0));
         label_5->setText(QApplication::translate("MainWindowClass", "\350\264\246\345\217\267\347\212\266\346\200\201", 0));
         label_6->setText(QApplication::translate("MainWindowClass", "\345\212\250\346\200\201\346\235\203\347\233\212", 0));
@@ -248,7 +248,7 @@ public:
         ReportBox->setTitle(QApplication::translate("MainWindowClass", "\350\277\220\350\241\214\346\227\245\345\277\227", 0));
         menu->setTitle(QApplication::translate("MainWindowClass", "\350\264\246\345\217\267\350\256\276\347\275\256", 0));
         menu_2->setTitle(QApplication::translate("MainWindowClass", "\350\267\237\345\215\225\350\256\276\347\275\256", 0));
-        menu_3->setTitle(QApplication::translate("MainWindowClass", "\347\250\213\345\272\217\350\256\276\347\275\256", 0));
+        menu_3->setTitle(QApplication::translate("MainWindowClass", "\346\234\237\350\264\247\345\205\254\345\217\270\350\256\276\347\275\256", 0));
     } // retranslateUi
 
 };

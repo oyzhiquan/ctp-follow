@@ -393,13 +393,13 @@
     <property name="title">
      <string>跟单设置</string>
     </property>
-    <addaction name="ruleSetting"/>
+    <addaction name="strategySetting"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
-     <string>程序设置</string>
+     <string>期货公司设置</string>
     </property>
-    <addaction name="programRegister"/>
+    <addaction name="brokerManage"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -415,14 +415,14 @@
     <string>样本账号设置</string>
    </property>
   </action>
-  <action name="ruleSetting">
+  <action name="strategySetting">
    <property name="text">
     <string>跟单策略设置</string>
    </property>
   </action>
-  <action name="programRegister">
+  <action name="brokerManage">
    <property name="text">
-    <string>程序注册</string>
+    <string>服务器管理</string>
    </property>
   </action>
  </widget>

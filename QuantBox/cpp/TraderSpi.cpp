@@ -1,26 +1,19 @@
 #include <qt_windows.h>
-#include <iostream>
-using namespace std;
-
 #include "include\TraderSpi.h"
 
 
-void CTraderSpi::OnFrontConnected()
+void MainTraderSpi::OnFrontConnected()
 {
 	qDebug() << "<<<---" << "OnFrontConnected:" << QThread::currentThreadId() <<endl;
-	///用户登录请求
-	// ReqUserLogin();
-	emit frontConnected();
+	emit FrontConnected();
 }
 
-void CTraderSpi:: OnFrontDisconnected(int nReason)
+void MainTraderSpi:: OnFrontDisconnected(int nReason)
 {
-	qDebug() << "<<<---" << "OnFrontDisconnected" << endl;
-	qDebug() << "<<<--- Reason = " << nReason << endl;
-	emit frontDisconnected();
+	qDebug() << "<<<---" << "OnFrontDisconnected: Reason = " << nReason << endl;
 }
 
-void CTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,
+void MainTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,
 		CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	qDebug() << "<<<---" << "OnRspUserLogin:" << QThread::currentThreadId() <<endl;
@@ -28,21 +21,22 @@ void CTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,
 	{
 		int iNextOrderRef = atoi(pRspUserLogin->MaxOrderRef);
 		iNextOrderRef++;
-		
-		emit rspUserLogin(pRspUserLogin->FrontID, pRspUserLogin->SessionID, iNextOrderRef);
+		emit UserLogined(pRspUserLogin->FrontID, pRspUserLogin->SessionID, iNextOrderRef);
 	}
 }
 
-void CTraderSpi::OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+void MainTraderSpi::OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, 
+                                               CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	qDebug() << "<<<---" << "OnRspSettlementInfoConfirm:" << QThread::currentThreadId() <<endl;
 	if (bIsLast && !IsErrorRspInfo(pRspInfo))
 	{
-		emit rspSettlementInfoConfirm();
+		emit SettlementInfoConfirmed();
 	}
 }
 
-void CTraderSpi::OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+void MainTraderSpi::OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, 
+                                     CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	qDebug() << "<<<---" << "OnRspOrderInsert:" << QThread::currentThreadId() <<endl;
 	if (bIsLast && !IsErrorRspInfo(pRspInfo))
@@ -51,7 +45,8 @@ void CTraderSpi::OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThost
 	}
 }
 
-void CTraderSpi::OnRspOrderAction(CThostFtdcInputOrderActionField *pInputOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+void MainTraderSpi::OnRspOrderAction(CThostFtdcInputOrderActionField *pInputOrderAction, 
+                                     CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	qDebug() << "<<<---" << "OnRspOrderAction:" << QThread::currentThreadId() <<endl;
 	if (bIsLast && !IsErrorRspInfo(pRspInfo))
@@ -61,7 +56,7 @@ void CTraderSpi::OnRspOrderAction(CThostFtdcInputOrderActionField *pInputOrderAc
 }
 
 ///报单通知
-void CTraderSpi::OnRtnOrder(CThostFtdcOrderField *pOrder)
+void MainTraderSpi::OnRtnOrder(CThostFtdcOrderField *pOrder)
 {
 	qDebug() << "<<<---" << "OnRtnOrder:"  <<  QThread::currentThreadId() <<endl;
 	/*if (IsMyOrder(pOrder))
@@ -74,53 +69,53 @@ void CTraderSpi::OnRtnOrder(CThostFtdcOrderField *pOrder)
 }
 
 ///成交通知
-void CTraderSpi::OnRtnTrade(CThostFtdcTradeField *pTrade)
+void MainTraderSpi::OnRtnTrade(CThostFtdcTradeField *pTrade)
 {
 	qDebug() << "<<<---" << "OnRtnTrade:"  <<  QThread::currentThreadId() <<endl;
-	qDebug() << pTrade->InvestorID << ":" << pTrade->Direction <<":" << pTrade->InstrumentID << ":" << pTrade->Price << endl;
+	qDebug() << pTrade->InvestorID << ":" << pTrade->Direction <<":" 
+        << pTrade->InstrumentID << ":" << pTrade->Price << endl;
     emit RtnTradeEvent(*pTrade);
 }
 
-void CTraderSpi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+void MainTraderSpi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, 
+                                           CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	qDebug() << "<<<---" << "OnRspQryTradingAccount:"  <<  QThread::currentThreadId() <<endl;
 	if (bIsLast && !IsErrorRspInfo(pRspInfo))
 	{
 		// 静态权益 = 上日结算 - 出金金额 + 入金金额
 		double preBalance = pTradingAccount->PreBalance - pTradingAccount->Withdraw + pTradingAccount->Deposit;
-		cout << "preBalance:"<<preBalance<< endl;
 		// 动态权益 = 静态权益 + 平仓盈亏 + 持仓盈亏 -手续费
 		double currentBalance = preBalance + pTradingAccount->CloseProfit + pTradingAccount->PositionProfit - pTradingAccount->Commission;	
-		cout << "currentBalance" << currentBalance << endl;
-		emit rspQryTradingAccount(currentBalance, pTradingAccount->CloseProfit, pTradingAccount->PositionProfit);
+		emit TraderBalanceUpdated(currentBalance, pTradingAccount->CloseProfit, pTradingAccount->PositionProfit);
 	}
 }
 		
-void CTraderSpi::OnHeartBeatWarning(int nTimeLapse)
+void MainTraderSpi::OnHeartBeatWarning(int nTimeLapse)
 {
 	qDebug() << "<<<---" << "OnHeartBeatWarning" <<  QThread::currentThreadId() <<endl;
 	qDebug() << "<<<--- nTimerLapse = " << nTimeLapse << endl;
 }
 
-void CTraderSpi::OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+void MainTraderSpi::OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
 {
 	qDebug() << "<<<---" << "OnRspError" <<  QThread::currentThreadId() <<endl;
 	IsErrorRspInfo(pRspInfo);
 }
 
-bool CTraderSpi::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)
+bool MainTraderSpi::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)
 {
 	// 如果ErrorID != 0, 说明收到了错误的响应
 	bool bResult = ((pRspInfo) && (pRspInfo->ErrorID != 0));
 	if (bResult)
 	{
-		emit rspErrorInfo();
+		// emit RspErrorInfo();
 		qDebug() << "<<<--- ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << endl;
 	}
 	return bResult;
 }
 
-bool CTraderSpi::IsTradingOrder(CThostFtdcOrderField *pOrder)
+bool MainTraderSpi::IsTradingOrder(CThostFtdcOrderField *pOrder)
 {
 	return ((pOrder->OrderStatus != THOST_FTDC_OST_PartTradedNotQueueing) &&
 			(pOrder->OrderStatus != THOST_FTDC_OST_Canceled) &&
@@ -128,108 +123,214 @@ bool CTraderSpi::IsTradingOrder(CThostFtdcOrderField *pOrder)
 }
 
 
-// 下面的暂时不管
-
-void CTraderSpi::OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+//====================== FollowTraderSpi =====================
+FollowTraderSpi::FollowTraderSpi()
 {
-	cerr << "--->>> " << "OnRspQryInstrument" << endl;
+}
+
+FollowTraderSpi::~FollowTraderSpi()
+{
+    qDebug() << "FollowTraderSpi destroy:" << QThread::currentThreadId() << endl;
+    emit TraderStatusUpdated(m_index, QString::fromLocal8Bit("账户已退出"));
+    emit TraderBalanceUpdated(m_index, 0.0, 0.0, 0.0);
+    emit EventTableUpdated(QString::fromLocal8Bit("账号%1已经退出登录").arg(m_INVESTOR_ID));
+    m_pTraderApi->Release();  // 一定要先释放交易api
+}
+
+void FollowTraderSpi::Init(int index, const char* frontAddr, const char* brokerID, 
+                           const char* investorID, const char* password)
+{
+    m_index = index;
+    strcpy(m_FRONT_ADDR, frontAddr);
+    strcpy(m_BROKER_ID, brokerID);
+    strcpy(m_INVESTOR_ID, investorID);
+    strcpy(m_PASSWORD, password);
+    m_iRequestID = 0;
+}
+
+void FollowTraderSpi::ReqConnect()
+{
+    qDebug() << "<<<---" << "ReqConnect:"<< QThread::currentThreadId() <<endl;
+
+    QString flowPath = QString::fromLocal8Bit("%1\\%2\\")
+        .arg(QCoreApplication::applicationDirPath().toStdString().c_str()).arg(m_INVESTOR_ID);
+    QDir dir;
+    if(!dir.exists(flowPath))
+    {
+        dir.mkdir(flowPath);
+    }
+    m_pTraderApi = CThostFtdcTraderApi::CreateFtdcTraderApi(flowPath.toStdString().c_str());  // 创建UserApi
+
+    m_pTraderApi->RegisterSpi((CThostFtdcTraderSpi*)this);  	// 注册事件类
+    m_pTraderApi->SubscribePublicTopic(THOST_TERT_QUICK);		// 注册公有流
+    m_pTraderApi->SubscribePrivateTopic(THOST_TERT_QUICK);		// 注册私有流
+    m_pTraderApi->RegisterFront(m_FRONT_ADDR);					// connect
+    m_pTraderApi->Init();
+    emit TraderStatusUpdated(m_index, QString::fromLocal8Bit("已连接交易服务器"));
+}
+
+void FollowTraderSpi::OnFrontConnected()
+{
+	qDebug() << "<<<---" << "OnFrontConnected:" << QThread::currentThreadId() <<endl;
+	///用户登录请求
+	ReqUserLogin();
+}
+
+void FollowTraderSpi:: OnFrontDisconnected(int nReason)
+{
+	qDebug() << "<<<---" << "OnFrontDisconnected:" << "Reason = " << nReason << endl;
+}
+
+void FollowTraderSpi::ReqUserLogin()
+{
+    CThostFtdcReqUserLoginField req;
+    memset(&req, 0, sizeof(req));
+    strcpy(req.BrokerID, m_BROKER_ID);
+    strcpy(req.UserID, m_INVESTOR_ID);
+    strcpy(req.Password, m_PASSWORD);
+    int iResult = m_pTraderApi->ReqUserLogin(&req, ++m_iRequestID);
+    if(iResult==0)
+    {
+        qDebug() << "<<<--- 发送用户登录请求: 成功" << QThread::currentThreadId() << endl;
+        emit TraderStatusUpdated(m_index, QString::fromLocal8Bit("成功发送登录请求"));
+    }
+    else
+    {
+        qDebug() << "<<<--- 发送用户登录请求: 失败" << QThread::currentThreadId() << endl;
+        emit TraderStatusUpdated(m_index, QString::fromLocal8Bit("发送登录请求失败"));
+    }
+}
+
+void FollowTraderSpi::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,
+		CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	qDebug() << "<<<---" << "OnRspUserLogin:" << QThread::currentThreadId() <<endl;
 	if (bIsLast && !IsErrorRspInfo(pRspInfo))
 	{
-		//ReqQryTradingAccount();
+		int iNextOrderRef = atoi(pRspUserLogin->MaxOrderRef);
+		iNextOrderRef++;
+
+        m_FRONT_ID = pRspUserLogin->FrontID;
+        m_SESSION_ID = pRspUserLogin->SessionID;
+        m_iNextOrderRef = iNextOrderRef;
+        //获取当前交易日
+        qDebug() << "<<<--- 获取当前交易日 = " << m_pTraderApi->GetTradingDay() << endl;
+        ///投资者结算结果确认
+        ReqSettlementInfoConfirm();
+        emit TraderLogined(m_index);
+        emit TraderStatusUpdated(m_index, QString::fromLocal8Bit("登录成功"));
 	}
 }
 
-void CTraderSpi::OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *pInvestorPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+void FollowTraderSpi::ReqSettlementInfoConfirm()
 {
-	cerr << "--->>> " << "OnRspQryInvestorPosition" << endl;
+    CThostFtdcSettlementInfoConfirmField req;
+    memset(&req, 0, sizeof(req));
+    strcpy(req.BrokerID, m_BROKER_ID);
+    strcpy(req.InvestorID, m_INVESTOR_ID);
+    int iResult = m_pTraderApi->ReqSettlementInfoConfirm(&req, ++m_iRequestID);
+    qDebug() << "<<<--- 投资者结算结果确认: " << iResult << ((iResult == 0) ? ", 成功" : ", 失败") << endl;
+}
+
+void FollowTraderSpi::OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, 
+                                                 CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	qDebug() << "<<<---" << "OnRspSettlementInfoConfirm:" << QThread::currentThreadId() <<endl;
 	if (bIsLast && !IsErrorRspInfo(pRspInfo))
 	{
-		///报单录入请求
-		//ReqOrderInsert();
-		//执行宣告录入请求
-		//ReqExecOrderInsert();
-		//询价录入
-		//ReqForQuoteInsert();
-		//做市商报价录入
-		//ReqQuoteInsert();
+		ReqQryTradingAccount();
 	}
 }
 
-void CTraderSpi::OnRspExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+void FollowTraderSpi::ReqQryTradingAccount()
 {
-	//如果执行宣告正确，则不会进入该回调
-	cerr << "--->>> " << "OnRspExecOrderInsert" << endl;
+    CThostFtdcQryTradingAccountField req;
+    memset(&req, 0, sizeof(req));
+    strcpy(req.BrokerID, m_BROKER_ID);
+    strcpy(req.InvestorID, m_INVESTOR_ID);
+    while (true)
+    {
+        int iResult = m_pTraderApi->ReqQryTradingAccount(&req, ++m_iRequestID);
+        if (!IsFlowControl(iResult))
+        {
+            qDebug() << "--->>> 请求查询资金账户: "  << iResult << ((iResult == 0) ? ", 成功" : ", 失败") << endl;
+            break;
+        }
+        else
+        {
+            qDebug() << "--->>> 请求查询资金账户: "  << iResult << ", 受到流控" << endl;
+            QThread::sleep(1);
+        }
+    } // while
+}
+
+void FollowTraderSpi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, 
+                                             CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+    qDebug() << "<<<---" << "OnRspQryTradingAccount:"  <<  QThread::currentThreadId() <<endl;
+    if (bIsLast && !IsErrorRspInfo(pRspInfo))
+    {
+        // 静态权益 = 上日结算 - 出金金额 + 入金金额
+        double preBalance = pTradingAccount->PreBalance - pTradingAccount->Withdraw + pTradingAccount->Deposit;
+        // 动态权益 = 静态权益 + 平仓盈亏 + 持仓盈亏 -手续费
+        double currentBalance = preBalance + pTradingAccount->CloseProfit + pTradingAccount->PositionProfit - pTradingAccount->Commission;	
+        emit TraderBalanceUpdated(m_index, currentBalance, pTradingAccount->CloseProfit, pTradingAccount->PositionProfit);
+    }
+}
+
+///报单通知
+void FollowTraderSpi::OnRtnOrder(CThostFtdcOrderField *pOrder)
+{
+	qDebug() << "<<<---" << "OnRtnOrder:"  <<  QThread::currentThreadId() <<endl;
+	/*if (IsMyOrder(pOrder))
+	{
+		if (IsTradingOrder(pOrder))
+			ReqOrderAction(pOrder);
+		else if (pOrder->OrderStatus == THOST_FTDC_OST_Canceled)
+			cout << "--->>> 撤单成功" << endl;
+	}*/
+}
+
+///成交通知
+void FollowTraderSpi::OnRtnTrade(CThostFtdcTradeField *pTrade)
+{
+	qDebug() << "<<<---" << "OnRtnTrade:"  <<  QThread::currentThreadId() <<endl;
+	qDebug() << pTrade->InvestorID << ":" << pTrade->Direction <<":" << pTrade->InstrumentID << ":" << pTrade->Price << endl;
+    emit RtnTradeEvent(*pTrade);
+}
+		
+void FollowTraderSpi::OnHeartBeatWarning(int nTimeLapse)
+{
+	qDebug() << "<<<---" << "OnHeartBeatWarning" <<  QThread::currentThreadId() <<endl;
+	qDebug() << "<<<--- nTimerLapse = " << nTimeLapse << endl;
+}
+
+void FollowTraderSpi::OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+{
+	qDebug() << "<<<---" << "OnRspError" <<  QThread::currentThreadId() <<endl;
 	IsErrorRspInfo(pRspInfo);
 }
 
-void CTraderSpi::OnRspForQuoteInsert(CThostFtdcInputForQuoteField *pInputForQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+bool FollowTraderSpi::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)
 {
-	//如果询价正确，则不会进入该回调
-	cerr << "--->>> " << "OnRspForQuoteInsert" << endl;
-	IsErrorRspInfo(pRspInfo);
+	// 如果ErrorID != 0, 说明收到了错误的响应
+	bool bResult = ((pRspInfo) && (pRspInfo->ErrorID != 0));
+	if (bResult)
+	{
+		emit RspErrorInfo();
+		qDebug() << "<<<--- ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << endl;
+	}
+	return bResult;
 }
 
-void CTraderSpi::OnRspQuoteInsert(CThostFtdcInputQuoteField *pInputQuote, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+bool FollowTraderSpi::IsTradingOrder(CThostFtdcOrderField *pOrder)
 {
-	//如果报价正确，则不会进入该回调
-	cerr << "--->>> " << "OnRspQuoteInsert" << endl;
-	IsErrorRspInfo(pRspInfo);
+	return ((pOrder->OrderStatus != THOST_FTDC_OST_PartTradedNotQueueing) &&
+			(pOrder->OrderStatus != THOST_FTDC_OST_Canceled) &&
+			(pOrder->OrderStatus != THOST_FTDC_OST_AllTraded));
 }
 
-void CTraderSpi::OnRspExecOrderAction(CThostFtdcInputExecOrderActionField *pInpuExectOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
+bool FollowTraderSpi::IsFlowControl(int iResult)
 {
-	//正确的撤单操作，不会进入该回调
-	cerr << "--->>> " << "OnRspExecOrderAction" << endl;
-	IsErrorRspInfo(pRspInfo);
-}
-
-void CTraderSpi::OnRspQuoteAction(CThostFtdcInputQuoteActionField *pInpuQuoteAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
-{
-	//正确的撤单操作，不会进入该回调
-	cerr << "--->>> " << "OnRspQuoteAction" << endl;
-	IsErrorRspInfo(pRspInfo);
-}
-
-
-//执行宣告通知
-void CTraderSpi::OnRtnExecOrder(CThostFtdcExecOrderField *pExecOrder)
-{
-	cerr << "--->>> " << "OnRtnExecOrder"  << endl;
-	//if (IsMyExecOrder(pExecOrder))
-	//{
-	//	if (IsTradingExecOrder(pExecOrder))
-	//		ReqExecOrderAction(pExecOrder);
-	//	else if (pExecOrder->ExecResult == THOST_FTDC_OER_Canceled)
-	//		cout << "--->>> 执行宣告撤单成功" << endl;
-	//}
-}
-
-//询价通知
-void CTraderSpi::OnRtnForQuoteRsp(CThostFtdcForQuoteRspField *pForQuoteRsp)
-{
-	//上期所中金所询价通知通过该接口返回；只有做市商客户可以收到该通知
-	cerr << "--->>> " << "OnRtnForQuoteRsp"  << endl;
-}
-
-//报价通知
-void CTraderSpi::OnRtnQuote(CThostFtdcQuoteField *pQuote)
-{
-	cerr << "--->>> " << "OnRtnQuote"  << endl;
-	//if (IsMyQuote(pQuote))
-	//{
-	//	if (IsTradingQuote(pQuote))
-	//		ReqQuoteAction(pQuote);
-	//	else if (pQuote->QuoteStatus == THOST_FTDC_OST_Canceled)
-	//		cout << "--->>> 报价撤单成功" << endl;
-	//}
-}
-
-bool CTraderSpi::IsTradingExecOrder(CThostFtdcExecOrderField *pExecOrder)
-{
-	return (pExecOrder->ExecResult != THOST_FTDC_OER_Canceled);
-}
-
-bool CTraderSpi::IsTradingQuote(CThostFtdcQuoteField *pQuote)
-{
-	return (pQuote->QuoteStatus != THOST_FTDC_OST_Canceled);
+    return ((iResult == -2) || (iResult == -3));
 }

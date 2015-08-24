@@ -13,6 +13,7 @@ public:
 
 private:
 	void LoadDate();
+    void LoadBroker();
 
 private:
 	Ui::FollowSettingClass ui;
@@ -21,6 +22,7 @@ private:
 
 private slots:
 	void followCellClicked(int row, int col);
+    void BrokerNameselected(QString brokerName);
 
 	void insertBtnClicked();
 	void deleteBtnClicked();

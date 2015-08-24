@@ -1,27 +1,47 @@
-#pragma once
 #include "ThostTraderApi\ThostFtdcTraderApi.h"
 #include "include\TraderSpi.h"
 #include <QtCore>
+#include <map>
+#include <string>
+using namespace std;
 
 typedef struct
 {
-	char inverst_id[13];
-	char password[41];
-	char broker_id[11];
-	char broker_name[20];
-	char td_front_addr[101];
-	int direct;
-	float ratio;
+    char inverstorID[13];
+    char password[41];
+    char brokerID[11];
+    char brokerName[20];
+    char tdFrontAddr[101];
+    int direct;
+    float ratio;
 } Account;
 
-class CTrader: public QObject
+typedef struct
+{
+	int direct;
+	float ratio;
+} FollowStrategy;
+
+typedef struct
+{
+    int id;
+    int followType;
+    int actionSec;
+    int priceType;
+    int priceJump;
+    int actionTimes;
+    int finalType;
+} Strategy;
+
+class MainTrader: public QObject
 {
 	Q_OBJECT
 
 public:
-	CTrader(int index, Account accout);
-	~CTrader();
-	void SetThread(QThread * thread);
+    MainTrader(Account &account);
+	~MainTrader();
+	void SetThread(QThread * mainThread);
+    void AddFollowStrategy(const char* investorID, FollowStrategy &followStrategy);
 
 private:
 	TThostFtdcAddressType m_FRONT_ADDR;						// 前置地址
@@ -35,44 +55,35 @@ private:
 	TThostFtdcSessionIDType	m_SESSION_ID;	//会话编号
     int m_iNextOrderRef;
 	TThostFtdcOrderRefType	m_ORDER_REF;	//报单引用
-	TThostFtdcOrderRefType	m_EXECORDER_REF;	//执行宣告引用
-	TThostFtdcOrderRefType	m_FORQUOTE_REF;	//询价引用
-	TThostFtdcOrderRefType	m_QUOTE_REF;	//报价引用
 
-	CTraderSpi * m_pTraderSpi;
+	MainTraderSpi * m_pTraderSpi;
 	CThostFtdcTraderApi* m_pTraderApi;
 
-	int m_index;  // 0:主账号，1-N依次为跟踪账号
-	char m_flowPath[100];
-    int m_followDirect;
-    float m_followRatio;
-
 	QThread * m_pThread;
+    map<string, FollowStrategy> m_followStrategys;
+    vector<Strategy> m_orderStrategys;
 
 private:
 	bool IsFlowControl(int iResult);
+    void LoadStrategy();
 
 signals:
-	void traderStatusUpdated(int index, QString message);
-	void traderBalanceUpdated(int index, double balance, double closeProfit, double positionProfit);
-    void eventTableUpdated(QString message);
-	void RtnTradeEvent(CThostFtdcTradeField tradeField);
-    void traderLogined(int index);
+	void TraderStatusUpdated(QString message);
+	void TraderBalanceUpdated(double balance, double closeProfit, double positionProfit);
+    void EventTableUpdated(QString message);
+    void TraderLogined();
 
 public slots:
 	void ReqConnect();
-
-    // 用户登出请求
-	void ReqLogout();
-
+    void ReqDisconnect();
 	///用户登录请求
 	void ReqUserLogin();
-	void rspUserLogin(int front_id ,int session_id, int iNextOrderRef);
+	void RspUserLogin(int front_id ,int session_id, int iNextOrderRef);
 	///投资者结算结果确认
 	void ReqSettlementInfoConfirm();
 	///请求查询资金账户
 	void ReqQryTradingAccount();
-	void rspQryTradingAccount(double balance, double closeProfit, double positionProfit);
+	void RspQryTradingAccount(double balance, double closeProfit, double positionProfit);
 
 
 	///报单录入请求
@@ -84,30 +95,7 @@ public slots:
 	bool IsMyOrder(CThostFtdcOrderField *pOrder);
 
 	// 跟单操作
-	void rspTradingAciton();
+	void RspTradingAciton();
 	void FollowRtnTrade(CThostFtdcTradeField tradeField);
     void ProcessTradeEvent(CThostFtdcTradeField tradeField);
-
-	// 下面的不管
-	///请求查询合约
-	void ReqQryInstrument(TThostFtdcInstrumentIDType instrument_id);
-	///请求查询投资者持仓
-	void ReqQryInvestorPosition(TThostFtdcInstrumentIDType instrument_id);
-
-	///执行宣告录入请求
-	void ReqExecOrderInsert(TThostFtdcInstrumentIDType INSTRUMENT_ID);
-	///执行宣告操作请求
-	void ReqExecOrderAction(CThostFtdcExecOrderField *pExecOrder);
-	// 是否我的执行宣告回报
-	bool IsMyExecOrder(CThostFtdcExecOrderField *pExecOrder);
-
-	///询价录入请求
-	void ReqForQuoteInsert(TThostFtdcInstrumentIDType INSTRUMENT_ID);
-	///报价录入请求
-	void ReqQuoteInsert(TThostFtdcInstrumentIDType INSTRUMENT_ID, TThostFtdcPriceType LIMIT_PRICE);
-	///报价操作请求
-	void ReqQuoteAction(CThostFtdcQuoteField *pQuote);
-	// 是否我的报价
-	bool IsMyQuote(CThostFtdcQuoteField *pQuote);
-
 };
