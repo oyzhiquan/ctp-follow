@@ -1,5 +1,1 @@
-022696 sinceyou broker:2030
-
-022698 sinceyou broker:0008
-
 Server=122.114.121.55;Database=kitexia;uid=kitexia_f;pwd=12345678;
