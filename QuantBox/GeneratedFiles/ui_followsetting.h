@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'followsetting.ui'
 **
-** Created by: Qt User Interface Compiler version 5.2.0
+** Created by: Qt User Interface Compiler version 5.9.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -153,33 +153,33 @@ public:
 
     void retranslateUi(QDialog *FollowSettingClass)
     {
-        FollowSettingClass->setWindowTitle(QApplication::translate("FollowSettingClass", "\350\267\237\350\270\252\350\264\246\345\217\267\350\256\276\347\275\256", 0));
-        closeButton->setText(QApplication::translate("FollowSettingClass", "\345\205\263\351\227\255", 0));
+        FollowSettingClass->setWindowTitle(QApplication::translate("FollowSettingClass", "\350\267\237\350\270\252\350\264\246\345\217\267\350\256\276\347\275\256", Q_NULLPTR));
+        closeButton->setText(QApplication::translate("FollowSettingClass", "\345\205\263\351\227\255", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem = followView->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("FollowSettingClass", "\350\264\246\345\217\267", 0));
+        ___qtablewidgetitem->setText(QApplication::translate("FollowSettingClass", "\350\264\246\345\217\267", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem1 = followView->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("FollowSettingClass", "\346\234\237\350\264\247\345\205\254\345\217\270", 0));
+        ___qtablewidgetitem1->setText(QApplication::translate("FollowSettingClass", "\346\234\237\350\264\247\345\205\254\345\217\270", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem2 = followView->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("FollowSettingClass", "\350\267\237\345\215\225\346\226\271\345\220\221", 0));
+        ___qtablewidgetitem2->setText(QApplication::translate("FollowSettingClass", "\350\267\237\345\215\225\346\226\271\345\220\221", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem3 = followView->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("FollowSettingClass", "\350\267\237\345\215\225\346\257\224\344\276\213", 0));
+        ___qtablewidgetitem3->setText(QApplication::translate("FollowSettingClass", "\350\267\237\345\215\225\346\257\224\344\276\213", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem4 = followView->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("FollowSettingClass", "\345\257\206\347\240\201", 0));
-        label->setText(QApplication::translate("FollowSettingClass", "\350\264\246 \345\217\267", 0));
-        label_2->setText(QApplication::translate("FollowSettingClass", "\345\257\206 \347\240\201", 0));
-        label_3->setText(QApplication::translate("FollowSettingClass", "\346\234\215\345\212\241\346\234\237\345\220\215\347\247\260", 0));
-        label_4->setText(QApplication::translate("FollowSettingClass", "\347\273\217\347\272\252\345\225\206\347\274\226\345\217\267", 0));
-        label_5->setText(QApplication::translate("FollowSettingClass", "\346\234\215\345\212\241\345\231\250\345\234\260\345\235\200", 0));
-        label_6->setText(QApplication::translate("FollowSettingClass", "\350\267\237\345\215\225\346\226\271\345\220\221", 0));
-        label_7->setText(QApplication::translate("FollowSettingClass", "\350\267\237\345\215\225\346\257\224\344\276\213", 0));
+        ___qtablewidgetitem4->setText(QApplication::translate("FollowSettingClass", "\345\257\206\347\240\201", Q_NULLPTR));
+        label->setText(QApplication::translate("FollowSettingClass", "\350\264\246 \345\217\267", Q_NULLPTR));
+        label_2->setText(QApplication::translate("FollowSettingClass", "\345\257\206 \347\240\201", Q_NULLPTR));
+        label_3->setText(QApplication::translate("FollowSettingClass", "\346\234\215\345\212\241\346\234\237\345\220\215\347\247\260", Q_NULLPTR));
+        label_4->setText(QApplication::translate("FollowSettingClass", "\347\273\217\347\272\252\345\225\206\347\274\226\345\217\267", Q_NULLPTR));
+        label_5->setText(QApplication::translate("FollowSettingClass", "\346\234\215\345\212\241\345\231\250\345\234\260\345\235\200", Q_NULLPTR));
+        label_6->setText(QApplication::translate("FollowSettingClass", "\350\267\237\345\215\225\346\226\271\345\220\221", Q_NULLPTR));
+        label_7->setText(QApplication::translate("FollowSettingClass", "\350\267\237\345\215\225\346\257\224\344\276\213", Q_NULLPTR));
         followDirect->clear();
         followDirect->insertItems(0, QStringList()
-         << QApplication::translate("FollowSettingClass", "\346\255\243\345\220\221\350\267\237\345\215\225", 0)
-         << QApplication::translate("FollowSettingClass", "\345\217\215\345\220\221\350\267\237\345\215\225", 0)
+         << QApplication::translate("FollowSettingClass", "\346\255\243\345\220\221\350\267\237\345\215\225", Q_NULLPTR)
+         << QApplication::translate("FollowSettingClass", "\345\217\215\345\220\221\350\267\237\345\215\225", Q_NULLPTR)
         );
-        insertButton->setText(QApplication::translate("FollowSettingClass", "\345\242\236\345\212\240", 0));
-        deleteButton->setText(QApplication::translate("FollowSettingClass", "\345\210\240\351\231\244", 0));
-        updateButton->setText(QApplication::translate("FollowSettingClass", "\346\233\264\346\226\260", 0));
+        insertButton->setText(QApplication::translate("FollowSettingClass", "\345\242\236\345\212\240", Q_NULLPTR));
+        deleteButton->setText(QApplication::translate("FollowSettingClass", "\345\210\240\351\231\244", Q_NULLPTR));
+        updateButton->setText(QApplication::translate("FollowSettingClass", "\346\233\264\346\226\260", Q_NULLPTR));
     } // retranslateUi
 
 };

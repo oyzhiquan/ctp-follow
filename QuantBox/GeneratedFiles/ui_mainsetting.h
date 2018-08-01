@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainsetting.ui'
 **
-** Created by: Qt User Interface Compiler version 5.2.0
+** Created by: Qt User Interface Compiler version 5.9.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -94,14 +94,14 @@ public:
 
     void retranslateUi(QDialog *MainSettingClass)
     {
-        MainSettingClass->setWindowTitle(QApplication::translate("MainSettingClass", "\344\270\273\350\264\246\345\217\267\350\256\276\347\275\256", 0));
-        label->setText(QApplication::translate("MainSettingClass", "\350\264\246 \345\217\267", 0));
-        label_2->setText(QApplication::translate("MainSettingClass", "\345\257\206 \347\240\201", 0));
-        label_3->setText(QApplication::translate("MainSettingClass", "\347\273\217\347\272\252\345\225\206\347\274\226\345\217\267", 0));
-        label_4->setText(QApplication::translate("MainSettingClass", "\346\234\215\345\212\241\345\231\250\345\220\215\347\247\260", 0));
-        label_5->setText(QApplication::translate("MainSettingClass", "\346\234\215\345\212\241\345\231\250\345\234\260\345\235\200", 0));
-        saveButton->setText(QApplication::translate("MainSettingClass", "\344\277\235  \345\255\230", 0));
-        cancelButton->setText(QApplication::translate("MainSettingClass", "\345\217\226  \346\266\210", 0));
+        MainSettingClass->setWindowTitle(QApplication::translate("MainSettingClass", "\344\270\273\350\264\246\345\217\267\350\256\276\347\275\256", Q_NULLPTR));
+        label->setText(QApplication::translate("MainSettingClass", "\350\264\246 \345\217\267", Q_NULLPTR));
+        label_2->setText(QApplication::translate("MainSettingClass", "\345\257\206 \347\240\201", Q_NULLPTR));
+        label_3->setText(QApplication::translate("MainSettingClass", "\347\273\217\347\272\252\345\225\206\347\274\226\345\217\267", Q_NULLPTR));
+        label_4->setText(QApplication::translate("MainSettingClass", "\346\234\215\345\212\241\345\231\250\345\220\215\347\247\260", Q_NULLPTR));
+        label_5->setText(QApplication::translate("MainSettingClass", "\346\234\215\345\212\241\345\231\250\345\234\260\345\235\200", Q_NULLPTR));
+        saveButton->setText(QApplication::translate("MainSettingClass", "\344\277\235  \345\255\230", Q_NULLPTR));
+        cancelButton->setText(QApplication::translate("MainSettingClass", "\345\217\226  \346\266\210", Q_NULLPTR));
     } // retranslateUi
 
 };

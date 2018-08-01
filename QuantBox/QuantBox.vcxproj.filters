@@ -106,45 +106,45 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="mainwindow.h">
+    <QtMoc Include="mainwindow.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="mainwindow.ui">
+    </QtMoc>
+    <QtUic Include="mainwindow.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="mainwindow.qrc">
+    </QtUic>
+    <QtRcc Include="mainwindow.qrc">
       <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="include\Trader.h">
+    </QtRcc>
+    <QtMoc Include="include\Trader.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="include\TraderSpi.h">
+    </QtMoc>
+    <QtMoc Include="include\TraderSpi.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="mainsetting.ui">
+    </QtMoc>
+    <QtUic Include="mainsetting.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="include\mainsetting.h">
+    </QtUic>
+    <QtMoc Include="include\mainsetting.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="followsetting.ui">
+    </QtMoc>
+    <QtUic Include="followsetting.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="include\followsetting.h">
+    </QtUic>
+    <QtMoc Include="include\followsetting.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="brokermanage.ui">
+    </QtMoc>
+    <QtUic Include="brokermanage.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="include\brokermanage.h">
+    </QtUic>
+    <QtMoc Include="include\brokermanage.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="strategysetting.ui">
+    </QtMoc>
+    <QtUic Include="strategysetting.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="include\strategysetting.h">
+    </QtUic>
+    <QtMoc Include="include\strategysetting.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_mainwindow.h">

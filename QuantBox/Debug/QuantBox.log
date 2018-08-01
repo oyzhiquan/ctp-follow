@@ -1,44 +1,5 @@
-﻿生成启动时间为 2015/8/23 21:40:22。
-     1>项目“E:\vsWorkspace\QuantBox\QuantBox\QuantBox.vcxproj”在节点 2 上(Build 个目标)。
-     1>CustomBuild:
-         Moc'ing Trader.h...
-       ClCompile:
-         E:\Program\App\VS2012\VC\bin\CL.exe /c /I.\GeneratedFiles /I. /IE:\Program\App\Qt\5.2.0\msvc2012\include /I.\GeneratedFiles\Debug /IE:\Program\App\Qt\5.2.0\msvc2012\include\QtCore /IE:\Program\App\Qt\5.2.0\msvc2012\include\QtGui /IE:\Program\App\Qt\5.2.0\msvc2012\include\QtWidgets /IE:\Program\App\Qt\5.2.0\msvc2012\include\QtXml /IE:\Program\App\Qt\5.2.0\msvc2012\include\QtSql /Zi /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /D QT_XML_LIB /D QT_SQL_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GeneratedFiles\Debug\moc_Trader.cpp GeneratedFiles\Debug\moc_mainwindow.cpp cpp\Trader.cpp main.cpp mainwindow.cpp
-         moc_Trader.cpp
-         moc_mainwindow.cpp
-         Trader.cpp
-         main.cpp
-         mainwindow.cpp
-         正在生成代码...
-       Link:
-         E:\Program\App\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\vsWorkspace\QuantBox\Win32\Debug\\QuantBox.exe" /NOLOGO /LIBPATH:E:\Program\App\Qt\5.2.0\msvc2012\lib /LIBPATH:.\ThostTraderApi /LIBPATH:.\sqlite qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5Widgetsd.lib Qt5Xmld.lib thosttraderapi.lib thostmduserapi.lib sqlite3.lib Qt5Sqld.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\vsWorkspace\QuantBox\Win32\Debug\QuantBox.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\vsWorkspace\QuantBox\Win32\Debug\QuantBox.lib" /MACHINE:X86 /SAFESEH Debug\QuantBox.res
-         Debug\brokermanage.obj
-         Debug\followsetting.obj
-         Debug\mainsetting.obj
-         Debug\strategysetting.obj
-         Debug\Trader.obj
-         Debug\TraderSpi.obj
-         Debug\moc_brokermanage.obj
-         Debug\moc_followsetting.obj
-         Debug\moc_mainsetting.obj
-         Debug\moc_mainwindow.obj
-         Debug\moc_strategysetting.obj
-         Debug\moc_Trader.obj
-         Debug\moc_TraderSpi.obj
-         Debug\qrc_mainwindow.obj
-         Debug\main.obj
-         Debug\mainwindow.obj
-         QuantBox.vcxproj -> E:\vsWorkspace\QuantBox\Win32\Debug\QuantBox.exe
-       PostBuildEvent:
-         COPY /Y E:\vsWorkspace\QuantBox\QuantBox\ThostTraderApi\thostmduserapi.dll E:\vsWorkspace\QuantBox\Win32\Debug\
-         COPY /Y E:\vsWorkspace\QuantBox\QuantBox\ThostTraderApi\thosttraderapi.dll E:\vsWorkspace\QuantBox\Win32\Debug\
-         COPY /Y E:\vsWorkspace\QuantBox\QuantBox\sqlite\sqlite3.dll E:\vsWorkspace\QuantBox\Win32\Debug\
-         :VCEnd
-         已复制         1 个文件。
-         已复制         1 个文件。
-         已复制         1 个文件。
-     1>已完成生成项目“E:\vsWorkspace\QuantBox\QuantBox\QuantBox.vcxproj”(Build 个目标)的操作。
-
-生成成功。
-
-已用时间 00:00:25.49
+﻿D:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: 名为 qrc_mainwindow.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 GeneratedFiles\qrc_mainwindow.cpp, .\GeneratedFiles\qrc_mainwindow.cpp。
+  QuantBox.vcxproj -> F:\MyWork\ctp-follow\Win32\Debug\QuantBox.exe
+  已复制         1 个文件。
+  已复制         1 个文件。
+  已复制         1 个文件。

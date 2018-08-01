@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.2.0
+** Created by: Qt User Interface Compiler version 5.9.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -208,47 +208,47 @@ public:
 
     void retranslateUi(QMainWindow *MainWindowClass)
     {
-        MainWindowClass->setWindowTitle(QApplication::translate("MainWindowClass", "\346\234\237\350\264\247\350\267\237\345\215\225\350\275\257\344\273\266", 0));
-        mainSetting->setText(QApplication::translate("MainWindowClass", "\344\270\273\345\270\220\345\217\267\350\256\276\347\275\256", 0));
-        followSetting->setText(QApplication::translate("MainWindowClass", "\346\240\267\346\234\254\350\264\246\345\217\267\350\256\276\347\275\256", 0));
-        strategySetting->setText(QApplication::translate("MainWindowClass", "\350\267\237\345\215\225\347\255\226\347\225\245\350\256\276\347\275\256", 0));
-        brokerManage->setText(QApplication::translate("MainWindowClass", "\346\234\215\345\212\241\345\231\250\347\256\241\347\220\206", 0));
-        MainBox->setTitle(QApplication::translate("MainWindowClass", "\344\270\273\350\264\246\345\217\267", 0));
-        label_5->setText(QApplication::translate("MainWindowClass", "\350\264\246\345\217\267\347\212\266\346\200\201", 0));
-        label_6->setText(QApplication::translate("MainWindowClass", "\345\212\250\346\200\201\346\235\203\347\233\212", 0));
-        label_8->setText(QApplication::translate("MainWindowClass", "\346\214\201\344\273\223\347\233\210\344\272\217", 0));
-        label_10->setText(QApplication::translate("MainWindowClass", "\345\271\263\344\273\223\347\233\210\344\272\217", 0));
-        mainStatus->setText(QApplication::translate("MainWindowClass", "\346\234\252\347\231\273\345\275\225", 0));
-        mainBalance->setText(QApplication::translate("MainWindowClass", "0.00", 0));
-        mainPositionProfit->setText(QApplication::translate("MainWindowClass", "0.00", 0));
-        mainCloseProfit->setText(QApplication::translate("MainWindowClass", "0.00", 0));
-        beginFollowBtn->setText(QApplication::translate("MainWindowClass", "\345\274\200\345\247\213\350\267\237\345\215\225", 0));
-        stopFollowBtn->setText(QApplication::translate("MainWindowClass", "\345\201\234\346\255\242\350\267\237\345\215\225", 0));
-        label->setText(QApplication::translate("MainWindowClass", "\344\270\273\350\264\246\345\217\267", 0));
-        label_3->setText(QApplication::translate("MainWindowClass", "\346\234\237\350\264\247\345\205\254\345\217\270", 0));
-        FollowBox->setTitle(QApplication::translate("MainWindowClass", "\346\240\267\346\234\254\350\264\246\345\217\267", 0));
+        MainWindowClass->setWindowTitle(QApplication::translate("MainWindowClass", "\346\234\237\350\264\247\350\267\237\345\215\225\350\275\257\344\273\266", Q_NULLPTR));
+        mainSetting->setText(QApplication::translate("MainWindowClass", "\344\270\273\345\270\220\345\217\267\350\256\276\347\275\256", Q_NULLPTR));
+        followSetting->setText(QApplication::translate("MainWindowClass", "\346\240\267\346\234\254\350\264\246\345\217\267\350\256\276\347\275\256", Q_NULLPTR));
+        strategySetting->setText(QApplication::translate("MainWindowClass", "\350\267\237\345\215\225\347\255\226\347\225\245\350\256\276\347\275\256", Q_NULLPTR));
+        brokerManage->setText(QApplication::translate("MainWindowClass", "\346\234\215\345\212\241\345\231\250\347\256\241\347\220\206", Q_NULLPTR));
+        MainBox->setTitle(QApplication::translate("MainWindowClass", "\344\270\273\350\264\246\345\217\267", Q_NULLPTR));
+        label_5->setText(QApplication::translate("MainWindowClass", "\350\264\246\345\217\267\347\212\266\346\200\201", Q_NULLPTR));
+        label_6->setText(QApplication::translate("MainWindowClass", "\345\212\250\346\200\201\346\235\203\347\233\212", Q_NULLPTR));
+        label_8->setText(QApplication::translate("MainWindowClass", "\346\214\201\344\273\223\347\233\210\344\272\217", Q_NULLPTR));
+        label_10->setText(QApplication::translate("MainWindowClass", "\345\271\263\344\273\223\347\233\210\344\272\217", Q_NULLPTR));
+        mainStatus->setText(QApplication::translate("MainWindowClass", "\346\234\252\347\231\273\345\275\225", Q_NULLPTR));
+        mainBalance->setText(QApplication::translate("MainWindowClass", "0.00", Q_NULLPTR));
+        mainPositionProfit->setText(QApplication::translate("MainWindowClass", "0.00", Q_NULLPTR));
+        mainCloseProfit->setText(QApplication::translate("MainWindowClass", "0.00", Q_NULLPTR));
+        beginFollowBtn->setText(QApplication::translate("MainWindowClass", "\345\274\200\345\247\213\350\267\237\345\215\225", Q_NULLPTR));
+        stopFollowBtn->setText(QApplication::translate("MainWindowClass", "\345\201\234\346\255\242\350\267\237\345\215\225", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindowClass", "\344\270\273\350\264\246\345\217\267", Q_NULLPTR));
+        label_3->setText(QApplication::translate("MainWindowClass", "\346\234\237\350\264\247\345\205\254\345\217\270", Q_NULLPTR));
+        FollowBox->setTitle(QApplication::translate("MainWindowClass", "\346\240\267\346\234\254\350\264\246\345\217\267", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem = followView->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("MainWindowClass", "\345\272\217\345\217\267", 0));
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindowClass", "\345\272\217\345\217\267", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem1 = followView->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("MainWindowClass", "\350\264\246\345\217\267", 0));
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindowClass", "\350\264\246\345\217\267", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem2 = followView->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("MainWindowClass", "\346\234\237\350\264\247\345\205\254\345\217\270", 0));
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindowClass", "\346\234\237\350\264\247\345\205\254\345\217\270", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem3 = followView->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("MainWindowClass", "\350\267\237\345\215\225\346\226\271\345\220\221", 0));
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindowClass", "\350\267\237\345\215\225\346\226\271\345\220\221", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem4 = followView->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("MainWindowClass", "\350\267\237\345\215\225\346\257\224\344\276\213", 0));
+        ___qtablewidgetitem4->setText(QApplication::translate("MainWindowClass", "\350\267\237\345\215\225\346\257\224\344\276\213", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem5 = followView->horizontalHeaderItem(5);
-        ___qtablewidgetitem5->setText(QApplication::translate("MainWindowClass", "\350\264\246\345\217\267\347\212\266\346\200\201", 0));
+        ___qtablewidgetitem5->setText(QApplication::translate("MainWindowClass", "\350\264\246\345\217\267\347\212\266\346\200\201", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem6 = followView->horizontalHeaderItem(6);
-        ___qtablewidgetitem6->setText(QApplication::translate("MainWindowClass", "\345\212\250\346\200\201\346\235\203\347\233\212", 0));
+        ___qtablewidgetitem6->setText(QApplication::translate("MainWindowClass", "\345\212\250\346\200\201\346\235\203\347\233\212", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem7 = followView->horizontalHeaderItem(7);
-        ___qtablewidgetitem7->setText(QApplication::translate("MainWindowClass", "\346\214\201\344\273\223\347\233\210\344\272\217", 0));
+        ___qtablewidgetitem7->setText(QApplication::translate("MainWindowClass", "\346\214\201\344\273\223\347\233\210\344\272\217", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem8 = followView->horizontalHeaderItem(8);
-        ___qtablewidgetitem8->setText(QApplication::translate("MainWindowClass", "\345\271\263\344\273\223\347\233\210\344\272\217", 0));
-        ReportBox->setTitle(QApplication::translate("MainWindowClass", "\350\277\220\350\241\214\346\227\245\345\277\227", 0));
-        menu->setTitle(QApplication::translate("MainWindowClass", "\350\264\246\345\217\267\350\256\276\347\275\256", 0));
-        menu_2->setTitle(QApplication::translate("MainWindowClass", "\350\267\237\345\215\225\350\256\276\347\275\256", 0));
-        menu_3->setTitle(QApplication::translate("MainWindowClass", "\346\234\237\350\264\247\345\205\254\345\217\270\350\256\276\347\275\256", 0));
+        ___qtablewidgetitem8->setText(QApplication::translate("MainWindowClass", "\345\271\263\344\273\223\347\233\210\344\272\217", Q_NULLPTR));
+        ReportBox->setTitle(QApplication::translate("MainWindowClass", "\350\277\220\350\241\214\346\227\245\345\277\227", Q_NULLPTR));
+        menu->setTitle(QApplication::translate("MainWindowClass", "\350\264\246\345\217\267\350\256\276\347\275\256", Q_NULLPTR));
+        menu_2->setTitle(QApplication::translate("MainWindowClass", "\350\267\237\345\215\225\350\256\276\347\275\256", Q_NULLPTR));
+        menu_3->setTitle(QApplication::translate("MainWindowClass", "\346\234\237\350\264\247\345\205\254\345\217\270\350\256\276\347\275\256", Q_NULLPTR));
     } // retranslateUi
 
 };

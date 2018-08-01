@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	setupFollowTable();
 	setupEventTable();
-
+	//数据库
 	db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName(QCoreApplication::applicationDirPath() + "/data.db");
 
@@ -65,8 +65,7 @@ void MainWindow::loadMainAccount()
 	if(db.open())
     {
 		QSqlQuery query;
-        query.exec("select inverst_id, password, b.broker_id, b.broker_name, b.td_front_addr \
-                   from account a left join broker b on a.broker_name = b.broker_name where a.id = 1");
+        query.exec("select inverst_id, password, b.broker_id, b.broker_name, b.td_front_addr from account a left join broker b on a.broker_name = b.broker_name where a.id = 1");
 		if(query.next())
 		{
 			strcpy(m_mainAccount.inverstorID, query.value(0).toByteArray().data());

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.2.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.6)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,47 +12,50 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.2.0. It"
+#error "This file was generated using the moc from 5.9.6. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[24];
-    char stringdata[380];
+    char stringdata0[379];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    offsetof(qt_meta_stringdata_MainWindow_t, stringdata) + ofs \
-        - idx * sizeof(QByteArrayData) \
+    qptrdiff(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs \
+        - idx * sizeof(QByteArrayData)) \
     )
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
-QT_MOC_LITERAL(0, 0, 10),
-QT_MOC_LITERAL(1, 11, 12),
-QT_MOC_LITERAL(2, 24, 0),
-QT_MOC_LITERAL(3, 25, 15),
-QT_MOC_LITERAL(4, 41, 17),
-QT_MOC_LITERAL(5, 59, 15),
-QT_MOC_LITERAL(6, 75, 17),
-QT_MOC_LITERAL(7, 93, 18),
-QT_MOC_LITERAL(8, 112, 5),
-QT_MOC_LITERAL(9, 118, 18),
-QT_MOC_LITERAL(10, 137, 20),
-QT_MOC_LITERAL(11, 158, 19),
-QT_MOC_LITERAL(12, 178, 23),
-QT_MOC_LITERAL(13, 202, 21),
-QT_MOC_LITERAL(14, 224, 20),
-QT_MOC_LITERAL(15, 245, 16),
-QT_MOC_LITERAL(16, 262, 7),
-QT_MOC_LITERAL(17, 270, 17),
-QT_MOC_LITERAL(18, 288, 7),
-QT_MOC_LITERAL(19, 296, 14),
-QT_MOC_LITERAL(20, 311, 11),
-QT_MOC_LITERAL(21, 323, 18),
-QT_MOC_LITERAL(22, 342, 19),
-QT_MOC_LITERAL(23, 362, 16)
+QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
+QT_MOC_LITERAL(1, 11, 12), // "TraderLogout"
+QT_MOC_LITERAL(2, 24, 0), // ""
+QT_MOC_LITERAL(3, 25, 15), // "loadMainAccount"
+QT_MOC_LITERAL(4, 41, 17), // "loadFollowAccount"
+QT_MOC_LITERAL(5, 59, 15), // "mainTraderLogin"
+QT_MOC_LITERAL(6, 75, 17), // "FollowTraderLogin"
+QT_MOC_LITERAL(7, 93, 18), // "connectFollow2Main"
+QT_MOC_LITERAL(8, 112, 5), // "index"
+QT_MOC_LITERAL(9, 118, 18), // "mainSettingClicked"
+QT_MOC_LITERAL(10, 137, 20), // "followSettingClicked"
+QT_MOC_LITERAL(11, 158, 19), // "brokerManageClicked"
+QT_MOC_LITERAL(12, 178, 23), // "strategySetttingClicked"
+QT_MOC_LITERAL(13, 202, 21), // "beginFollowBtnClicked"
+QT_MOC_LITERAL(14, 224, 20), // "stopFollowBtnClicked"
+QT_MOC_LITERAL(15, 245, 16), // "UpdateMainStatus"
+QT_MOC_LITERAL(16, 262, 7), // "message"
+QT_MOC_LITERAL(17, 270, 17), // "UpdateMainBalance"
+QT_MOC_LITERAL(18, 288, 7), // "balance"
+QT_MOC_LITERAL(19, 296, 14), // "positionProfit"
+QT_MOC_LITERAL(20, 311, 11), // "closeProfit"
+QT_MOC_LITERAL(21, 323, 18), // "UpdateFollowStatus"
+QT_MOC_LITERAL(22, 342, 19), // "UpdateFollowBalance"
+QT_MOC_LITERAL(23, 362, 16) // "InsertEventTable"
+
     },
     "MainWindow\0TraderLogout\0\0loadMainAccount\0"
     "loadFollowAccount\0mainTraderLogin\0"
@@ -63,7 +66,7 @@ QT_MOC_LITERAL(23, 362, 16)
     "UpdateMainStatus\0message\0UpdateMainBalance\0"
     "balance\0positionProfit\0closeProfit\0"
     "UpdateFollowStatus\0UpdateFollowBalance\0"
-    "InsertEventTable\0"
+    "InsertEventTable"
 };
 #undef QT_MOC_LITERAL
 
@@ -81,25 +84,25 @@ static const uint qt_meta_data_MainWindow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   99,    2, 0x06,
+       1,    0,   99,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,  100,    2, 0x08,
-       4,    0,  101,    2, 0x08,
-       5,    0,  102,    2, 0x08,
-       6,    0,  103,    2, 0x08,
-       7,    1,  104,    2, 0x08,
-       9,    0,  107,    2, 0x08,
-      10,    0,  108,    2, 0x08,
-      11,    0,  109,    2, 0x08,
-      12,    0,  110,    2, 0x08,
-      13,    0,  111,    2, 0x08,
-      14,    0,  112,    2, 0x08,
-      15,    1,  113,    2, 0x08,
-      17,    3,  116,    2, 0x08,
-      21,    2,  123,    2, 0x08,
-      22,    4,  128,    2, 0x08,
-      23,    1,  137,    2, 0x08,
+       3,    0,  100,    2, 0x08 /* Private */,
+       4,    0,  101,    2, 0x08 /* Private */,
+       5,    0,  102,    2, 0x08 /* Private */,
+       6,    0,  103,    2, 0x08 /* Private */,
+       7,    1,  104,    2, 0x08 /* Private */,
+       9,    0,  107,    2, 0x08 /* Private */,
+      10,    0,  108,    2, 0x08 /* Private */,
+      11,    0,  109,    2, 0x08 /* Private */,
+      12,    0,  110,    2, 0x08 /* Private */,
+      13,    0,  111,    2, 0x08 /* Private */,
+      14,    0,  112,    2, 0x08 /* Private */,
+      15,    1,  113,    2, 0x08 /* Private */,
+      17,    3,  116,    2, 0x08 /* Private */,
+      21,    2,  123,    2, 0x08 /* Private */,
+      22,    4,  128,    2, 0x08 /* Private */,
+      23,    1,  137,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -129,6 +132,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         MainWindow *_t = static_cast<MainWindow *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->TraderLogout(); break;
         case 1: _t->loadMainAccount(); break;
@@ -151,11 +155,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
-        void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (MainWindow::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow::TraderLogout)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MainWindow::TraderLogout)) {
                 *result = 0;
+                return;
             }
         }
     }
@@ -163,7 +167,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
 
 const QMetaObject MainWindow::staticMetaObject = {
     { &QMainWindow::staticMetaObject, qt_meta_stringdata_MainWindow.data,
-      qt_meta_data_MainWindow,  qt_static_metacall, 0, 0}
+      qt_meta_data_MainWindow,  qt_static_metacall, nullptr, nullptr}
 };
 
 
@@ -174,9 +178,9 @@ const QMetaObject *MainWindow::metaObject() const
 
 void *MainWindow::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_MainWindow.stringdata))
-        return static_cast<void*>(const_cast< MainWindow*>(this));
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_MainWindow.stringdata0))
+        return static_cast<void*>(this);
     return QMainWindow::qt_metacast(_clname);
 }
 
@@ -200,6 +204,7 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void MainWindow::TraderLogout()
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, 0);
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE

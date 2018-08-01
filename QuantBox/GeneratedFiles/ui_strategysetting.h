@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'strategysetting.ui'
 **
-** Created by: Qt User Interface Compiler version 5.2.0
+** Created by: Qt User Interface Compiler version 5.9.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -137,41 +137,41 @@ public:
 
     void retranslateUi(QDialog *StrategySettingClass)
     {
-        StrategySettingClass->setWindowTitle(QApplication::translate("StrategySettingClass", "\350\267\237\345\215\225\347\255\226\347\225\245\350\256\276\347\275\256", 0));
-        label->setText(QApplication::translate("StrategySettingClass", "\344\273\267\346\240\274\347\255\226\347\225\245", 0));
-        groupBox->setTitle(QApplication::translate("StrategySettingClass", "\345\274\200\344\273\223\345\215\225\347\255\226\347\225\245", 0));
-        label_2->setText(QApplication::translate("StrategySettingClass", "\345\247\224\346\211\230        \347\247\222\344\270\215\346\210\220\344\272\244\346\222\244\345\215\225", 0));
-        label_3->setText(QApplication::translate("StrategySettingClass", "\346\222\244\345\215\225\345\220\216\344\273\245             \344\273\267\346\240\274\345\201\217\347\246\273        \350\267\263\350\277\275\345\215\225", 0));
-        label_4->setText(QApplication::translate("StrategySettingClass", "\350\277\275\345\215\225        \346\254\241\345\220\216\344\270\215\346\210\220\344\272\244", 0));
+        StrategySettingClass->setWindowTitle(QApplication::translate("StrategySettingClass", "\350\267\237\345\215\225\347\255\226\347\225\245\350\256\276\347\275\256", Q_NULLPTR));
+        label->setText(QApplication::translate("StrategySettingClass", "\344\273\267\346\240\274\347\255\226\347\225\245", Q_NULLPTR));
+        groupBox->setTitle(QApplication::translate("StrategySettingClass", "\345\274\200\344\273\223\345\215\225\347\255\226\347\225\245", Q_NULLPTR));
+        label_2->setText(QApplication::translate("StrategySettingClass", "\345\247\224\346\211\230        \347\247\222\344\270\215\346\210\220\344\272\244\346\222\244\345\215\225", Q_NULLPTR));
+        label_3->setText(QApplication::translate("StrategySettingClass", "\346\222\244\345\215\225\345\220\216\344\273\245             \344\273\267\346\240\274\345\201\217\347\246\273        \350\267\263\350\277\275\345\215\225", Q_NULLPTR));
+        label_4->setText(QApplication::translate("StrategySettingClass", "\350\277\275\345\215\225        \346\254\241\345\220\216\344\270\215\346\210\220\344\272\244", Q_NULLPTR));
         openPriceType->clear();
         openPriceType->insertItems(0, QStringList()
-         << QApplication::translate("StrategySettingClass", "\345\247\224\346\211\230\344\273\267\346\240\274", 0)
-         << QApplication::translate("StrategySettingClass", "\346\234\200\346\226\260\344\273\267\346\240\274", 0)
+         << QApplication::translate("StrategySettingClass", "\345\247\224\346\211\230\344\273\267\346\240\274", Q_NULLPTR)
+         << QApplication::translate("StrategySettingClass", "\346\234\200\346\226\260\344\273\267\346\240\274", Q_NULLPTR)
         );
         openFinal->clear();
         openFinal->insertItems(0, QStringList()
-         << QApplication::translate("StrategySettingClass", "\346\222\244\345\215\225", 0)
-         << QApplication::translate("StrategySettingClass", "\346\214\202\345\215\225", 0)
+         << QApplication::translate("StrategySettingClass", "\346\222\244\345\215\225", Q_NULLPTR)
+         << QApplication::translate("StrategySettingClass", "\346\214\202\345\215\225", Q_NULLPTR)
         );
         followType->clear();
         followType->insertItems(0, QStringList()
-         << QApplication::translate("StrategySettingClass", "\346\240\267\346\234\254\346\210\220\344\272\244\344\273\267\350\267\237\345\215\225", 0)
-         << QApplication::translate("StrategySettingClass", "\345\270\202\344\273\267\350\267\237\345\215\225", 0)
+         << QApplication::translate("StrategySettingClass", "\346\240\267\346\234\254\346\210\220\344\272\244\344\273\267\350\267\237\345\215\225", Q_NULLPTR)
+         << QApplication::translate("StrategySettingClass", "\345\270\202\344\273\267\350\267\237\345\215\225", Q_NULLPTR)
         );
-        pushButton->setText(QApplication::translate("StrategySettingClass", "\344\277\235\345\255\230", 0));
-        groupBox_2->setTitle(QApplication::translate("StrategySettingClass", "\345\271\263\344\273\223\345\215\225\347\255\226\347\225\245", 0));
-        label_5->setText(QApplication::translate("StrategySettingClass", "\345\247\224\346\211\230        \347\247\222\344\270\215\346\210\220\344\272\244\346\222\244\345\215\225", 0));
-        label_6->setText(QApplication::translate("StrategySettingClass", "\346\222\244\345\215\225\345\220\216\344\273\245             \344\273\267\346\240\274\345\201\217\347\246\273        \350\267\263\350\277\275\345\215\225", 0));
-        label_7->setText(QApplication::translate("StrategySettingClass", "\350\277\275\345\215\225        \346\254\241\345\220\216\344\270\215\346\210\220\344\272\244", 0));
+        pushButton->setText(QApplication::translate("StrategySettingClass", "\344\277\235\345\255\230", Q_NULLPTR));
+        groupBox_2->setTitle(QApplication::translate("StrategySettingClass", "\345\271\263\344\273\223\345\215\225\347\255\226\347\225\245", Q_NULLPTR));
+        label_5->setText(QApplication::translate("StrategySettingClass", "\345\247\224\346\211\230        \347\247\222\344\270\215\346\210\220\344\272\244\346\222\244\345\215\225", Q_NULLPTR));
+        label_6->setText(QApplication::translate("StrategySettingClass", "\346\222\244\345\215\225\345\220\216\344\273\245             \344\273\267\346\240\274\345\201\217\347\246\273        \350\267\263\350\277\275\345\215\225", Q_NULLPTR));
+        label_7->setText(QApplication::translate("StrategySettingClass", "\350\277\275\345\215\225        \346\254\241\345\220\216\344\270\215\346\210\220\344\272\244", Q_NULLPTR));
         closePriceType->clear();
         closePriceType->insertItems(0, QStringList()
-         << QApplication::translate("StrategySettingClass", "\345\247\224\346\211\230\344\273\267\346\240\274", 0)
-         << QApplication::translate("StrategySettingClass", "\346\234\200\346\226\260\344\273\267\346\240\274", 0)
+         << QApplication::translate("StrategySettingClass", "\345\247\224\346\211\230\344\273\267\346\240\274", Q_NULLPTR)
+         << QApplication::translate("StrategySettingClass", "\346\234\200\346\226\260\344\273\267\346\240\274", Q_NULLPTR)
         );
         closeFinal->clear();
         closeFinal->insertItems(0, QStringList()
-         << QApplication::translate("StrategySettingClass", "\346\222\244\345\215\225", 0)
-         << QApplication::translate("StrategySettingClass", "\346\214\202\345\215\225", 0)
+         << QApplication::translate("StrategySettingClass", "\346\222\244\345\215\225", Q_NULLPTR)
+         << QApplication::translate("StrategySettingClass", "\346\214\202\345\215\225", Q_NULLPTR)
         );
     } // retranslateUi
 

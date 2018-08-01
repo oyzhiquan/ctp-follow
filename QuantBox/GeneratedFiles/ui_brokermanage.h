@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'brokermanage.ui'
 **
-** Created by: Qt User Interface Compiler version 5.2.0
+** Created by: Qt User Interface Compiler version 5.9.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -104,20 +104,20 @@ public:
 
     void retranslateUi(QDialog *BrokerManageClass)
     {
-        BrokerManageClass->setWindowTitle(QApplication::translate("BrokerManageClass", "\346\234\237\350\264\247\345\205\254\345\217\270\347\256\241\347\220\206", 0));
+        BrokerManageClass->setWindowTitle(QApplication::translate("BrokerManageClass", "\346\234\237\350\264\247\345\205\254\345\217\270\347\256\241\347\220\206", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem = BrokerTable->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("BrokerManageClass", "\347\273\217\347\272\252\346\234\215\345\212\241\345\231\250\345\220\215\347\247\260", 0));
+        ___qtablewidgetitem->setText(QApplication::translate("BrokerManageClass", "\347\273\217\347\272\252\346\234\215\345\212\241\345\231\250\345\220\215\347\247\260", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem1 = BrokerTable->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("BrokerManageClass", "\347\273\217\347\272\252\345\225\206\347\274\226\345\217\267", 0));
+        ___qtablewidgetitem1->setText(QApplication::translate("BrokerManageClass", "\347\273\217\347\272\252\345\225\206\347\274\226\345\217\267", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem2 = BrokerTable->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("BrokerManageClass", "\344\272\244\346\230\223\346\234\215\345\212\241\346\234\237\345\234\260\345\235\200", 0));
-        label->setText(QApplication::translate("BrokerManageClass", "\347\273\217\347\272\252\346\234\215\345\212\241\345\231\250\345\220\215\347\247\260", 0));
-        label_2->setText(QApplication::translate("BrokerManageClass", "\347\273\217\347\272\252\345\225\206\347\274\226\345\217\267", 0));
-        label_3->setText(QApplication::translate("BrokerManageClass", "\344\272\244\346\230\223\346\234\215\345\212\241\346\234\237\345\234\260\345\235\200", 0));
-        insertButton->setText(QApplication::translate("BrokerManageClass", "\345\242\236\345\212\240", 0));
-        deleteButton->setText(QApplication::translate("BrokerManageClass", "\345\210\240\351\231\244", 0));
-        updateButton->setText(QApplication::translate("BrokerManageClass", "\346\233\264\346\226\260", 0));
-        pushButton->setText(QApplication::translate("BrokerManageClass", "\345\205\263\351\227\255", 0));
+        ___qtablewidgetitem2->setText(QApplication::translate("BrokerManageClass", "\344\272\244\346\230\223\346\234\215\345\212\241\346\234\237\345\234\260\345\235\200", Q_NULLPTR));
+        label->setText(QApplication::translate("BrokerManageClass", "\347\273\217\347\272\252\346\234\215\345\212\241\345\231\250\345\220\215\347\247\260", Q_NULLPTR));
+        label_2->setText(QApplication::translate("BrokerManageClass", "\347\273\217\347\272\252\345\225\206\347\274\226\345\217\267", Q_NULLPTR));
+        label_3->setText(QApplication::translate("BrokerManageClass", "\344\272\244\346\230\223\346\234\215\345\212\241\346\234\237\345\234\260\345\235\200", Q_NULLPTR));
+        insertButton->setText(QApplication::translate("BrokerManageClass", "\345\242\236\345\212\240", Q_NULLPTR));
+        deleteButton->setText(QApplication::translate("BrokerManageClass", "\345\210\240\351\231\244", Q_NULLPTR));
+        updateButton->setText(QApplication::translate("BrokerManageClass", "\346\233\264\346\226\260", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("BrokerManageClass", "\345\205\263\351\227\255", Q_NULLPTR));
     } // retranslateUi
 
 };
